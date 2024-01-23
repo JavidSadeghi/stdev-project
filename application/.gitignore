@@ -1,0 +1,47 @@
+application/dist
+application/tmp
+application/out-tsc
+application/data
+application/logs
+!application/logs/.keepfile
+logs
+!logs/.keepfile
+# dependencies
+application/node_modules
+application/package-lock.json
+application/yarn.lock
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+# !.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+application/.sass-cache
+application/connect.lock
+application/coverage
+application/libpeerconnection.log
+application/npm-debug.log
+application/yarn-error.log
+application/testem.log
+application/typings
+!application/.keepfile
+application/.last_version
+.last_version
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Local .env
+.env

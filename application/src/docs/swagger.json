@@ -1,0 +1,758 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "",
+    "version": "v.0.1-SNAPSHOT",
+    "title": "Swagger STDev-Server",
+    "termsOfService": "",
+    "contact": {
+      "email": "javid.sadeghi@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "",
+  "basePath": "/stdev-server/api/v1",
+  "servers": [
+    {
+      "url": "/stdev-server/api/v1",
+      "description": "Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication APIs"
+    },
+    {
+      "name": "User",
+      "description": "User and Friendship APIs"
+    } 
+  ],
+  "schemes": ["https", "http"],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "",
+        "description": "",
+        "operationId": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                  "user_email": {
+                    "type": "string"
+                  },
+                  "user_password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse200"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse422"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse403"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "",
+        "description": "",
+        "operationId": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                  "user_first_name": {
+                    "type": "string"
+                  },
+                  "user_last_name": {
+                    "type": "string"
+                  },
+                  "user_email": {
+                    "type": "string"
+                  },
+                  "user_password": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "confirm_password": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "user_age": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse200"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse422"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse403"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/user": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get user's detail",
+        "description": "",
+        "operationId": "",
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse200"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse422"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse403"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ]
+      }
+    },
+    "/user/search": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Search users by detail",
+        "description": "",
+        "operationId": "",
+        "parameters": [
+          {
+            "name": "first_name",
+            "in": "query",
+            "description": "user's first name",
+            "required": false
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "description": "user's last name",
+            "required": false
+          },
+          {
+            "name": "age",
+            "in": "query",
+            "description": "user's age",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page number",
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit count per page",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse200"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse422"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse403"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ]
+      }
+    },
+    "/user/requests": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get users friendship requests",
+        "description": "",
+        "operationId": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse200"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse422"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse403"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ]
+      }
+    },
+    "/user/request/send/{friend_id}": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Send a friendship request",
+        "description": "",
+        "operationId": "",
+        "parameters": [
+          {
+            "name": "friend_id",
+            "in": "path",
+            "description": "friend identification",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse200"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse422"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse403"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ]
+      }
+    },
+    "/user/request/accept/{friend_id}": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "Accept a friendship request",
+        "description": "",
+        "operationId": "",
+        "parameters": [
+          {
+            "name": "friend_id",
+            "in": "path",
+            "description": "friend identification",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse200"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse422"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse403"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ]
+      }
+    },
+    "/user/request/reject/{friend_id}": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "Reject a friendship request",
+        "description": "",
+        "operationId": "",
+        "parameters": [
+          {
+            "name": "friend_id",
+            "in": "path",
+            "description": "friend identification",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse200"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse422"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse403"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ]
+      }
+    }
+
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "x-auth-token",
+        "in": "header"
+      }
+    }
+  },
+  "definitions": {
+    "ApiResponse200": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "element": {
+          "type": "object"
+        }
+      }
+    },
+    "ApiResponse400": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse401": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse402": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse403": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse404": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse422": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "object"
+        }
+      }
+    },
+    "ApiResponse500": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
